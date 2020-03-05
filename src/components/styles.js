@@ -15,7 +15,6 @@ export const Circle = styled.span`
 
 export const StyledTable = styled("table")(
   props =>
-    console.log("props", props) ||
     css`
       border: none;
       /* margin-bottom: 16px; */
