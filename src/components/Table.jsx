@@ -49,10 +49,7 @@ const Table = ({
     fetchData({ pageIndex, pageSize });
   }, [fetchData, pageIndex, pageSize]);
 
-  console.log("theme", theme);
-
   const setTheadTextAlign = (items, idx) => {
-    console.log("items", items);
     return page.length === 0 || idx !== 0
       ? idx === items.length - 1
         ? "center"
