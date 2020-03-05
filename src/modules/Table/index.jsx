@@ -3,7 +3,6 @@ import { Avatar, Badge, Box, Button, Flex, Text } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import { withTheme } from "emotion-theming";
 import React from "react";
-import { Container } from "../../components/Container";
 import makeData from "../../components/makeData";
 import NoDataImage from "../../public/static/undraw_empty.svg";
 import Table from "../../components/Table";
@@ -101,7 +100,7 @@ const Index = () => {
   // const data = [];
 
   return (
-    <Container>
+    <Flex justify="center" align="center" height="100vh">
       <Flex maxWidth={1054} width="100%" direction="column" mb={16}>
         {data.length > 0 ? (
           <Table data={data} columns={columns} noDataText="No result" />
@@ -113,7 +112,6 @@ const Index = () => {
             boxShadow="0 10px 15px -3px rgba(0, 0, 0, 0.1),
             0 4px 6px -2px rgba(0, 0, 0, 0.05)"
             minHeight={400}
-            pb={8}
             borderRadius={6}
           >
             <NoDataImage viewBox="0 0 1200 800" width="340px" height="260px" />
@@ -121,7 +119,7 @@ const Index = () => {
           </Flex>
         )}
       </Flex>
-    </Container>
+    </Flex>
   );
 };
 
