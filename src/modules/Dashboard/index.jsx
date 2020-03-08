@@ -59,7 +59,20 @@ const SubtleCard = ({ label }) => {
           }).format(Math.floor(Math.random() * 10000))}
       </Text>
 
-      <Tag size="sm" rounded="full" variant="solid" bg="#1e4e8cb8" mt={2}>
+      <Tag
+        size="sm"
+        rounded="full"
+        variant="solid"
+        bg="#1e4e8cb8"
+        mt={2}
+        as="button"
+        _hover={{
+          bg: theme.colors.blue[700]
+        }}
+        _active={{
+          bg: theme.colors.blue[800]
+        }}
+      >
         <TagLabel py={1} px={1} mr={2}>
           View all
         </TagLabel>
@@ -70,14 +83,16 @@ const SubtleCard = ({ label }) => {
             height: 18px;
             border-radius: 50%;
             position: relative;
-            margin-right: -3px;
+            margin-right: -4px;
           `}
+          id="circle"
         >
           <TagIcon
             icon="chevron-right"
             size="18px"
             css={{
               position: "absolute",
+              right: 0,
               color: "white"
             }}
           />
@@ -100,12 +115,12 @@ const ObviousCard = () => {
       bg="white"
     >
       <Box p={4}>
-        <Flex justify="space-between">
+        <Flex justify="space-between" align="center" mb={1}>
           <Text fontWeight={600}>{faker.name.findName()}</Text>
           <Badge
             borderRadius="999px"
             px={3}
-            py={"2px"}
+            py={"1px"}
             variantColor={
               status === "Pending"
                 ? "orange"
@@ -121,20 +136,26 @@ const ObviousCard = () => {
             {status}
           </Badge>
         </Flex>
-        <Text color="white" fontWeight={400} fontSize="xl" color="blue.800">
+        <Text
+          color="white"
+          fontWeight={400}
+          fontSize="xl"
+          color="blue.800"
+          mb={1}
+        >
           {"RM " +
             new Intl.NumberFormat("en-MY", {
               maximumSignificantDigits: 3
             }).format(Math.floor(Math.random() * 10000))}
         </Text>
-        <Text>
+        <Text color="#6b7280">
           Due {dayjs(randomDate(new Date(2019, 0, 1), new Date())).toNow()}
         </Text>
       </Box>
       <Flex justify="center" bg="gray.50" borderRadius="0 0 8px 8px">
         <Button
           variant="ghost"
-          // color="gray.500"
+          color="gray.500"
           py={1}
           w="100%"
           variantColor="gray"
@@ -164,13 +185,17 @@ const Index = () => {
             bg="blue.600"
             leftIcon="add"
             borderRadius={999}
-            py={2}
+            py={3}
             px={6}
             mr={8}
             _hover={{
-              bg: "blue.800",
+              bg: "blue.700",
               transition: "0.3s"
             }}
+            _active={{
+              bg: "blue.800"
+            }}
+            fontWeight={400}
           >
             New Invoice
           </Button>
