@@ -2,17 +2,6 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { theme } from "@chakra-ui/core";
 
-export const Circle = styled.span`
-  height: 34px;
-  width: 34px;
-  font-size: 12px;
-  background-color: ${theme.colors.gray[200]};
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const StyledTable = styled("table")(
   props =>
     css`
@@ -33,7 +22,6 @@ export const StyledTable = styled("table")(
     height: 48px;
     border: none;
   } */
-
       td {
         border-top-width: 1.2px;
         border-top-style: solid;

@@ -17,6 +17,7 @@ import { withTheme } from "emotion-theming";
 import InvoiceTable from "./components/InvoiceTable";
 import dayjs from "dayjs";
 import faker from "faker";
+import Logo from "../../public/static/logo.svg";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -172,7 +173,8 @@ const Index = () => {
   return (
     <Flex align="center" minHeight="100vh" direction="column" bg="gray.100">
       <Flex justify="space-between" w="100%" p={4} align="center">
-        <Box width={256}>Logo</Box>
+        {/* <Logo viewBox="0 30 256 40" height="40px"></Logo> */}
+        <Box w={256}></Box>
         <Grid templateColumns="1fr 1fr 1fr 1fr" gap={8}>
           <MenuButton>Dashboard</MenuButton>
           <MenuButton>Invoices</MenuButton>
@@ -207,30 +209,26 @@ const Index = () => {
         </Flex>
       </Flex>
       <Flex justify="center" w="100%" p={6} align="center" bg="blue.600" mb={6}>
-        <Grid
-          templateColumns="repeat(auto-fit, minmax(335px, 1fr))"
-          maxWidth={1054}
-          gap={6}
-        >
-          <SubtleCard label="overdue"></SubtleCard>
-          <SubtleCard label="in draft"></SubtleCard>
-          <SubtleCard label="total outstanding"></SubtleCard>
-        </Grid>
+        <Box width={1054}>
+          <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6}>
+            <SubtleCard label="overdue"></SubtleCard>
+            <SubtleCard label="in draft"></SubtleCard>
+            <SubtleCard label="total outstanding"></SubtleCard>
+          </Grid>
+        </Box>
       </Flex>
-      <Box mb={6}>
-        <Text fontSize="2xl" letterSpacing={1} py={4} color="blue.800">
-          Recent Invoices
-        </Text>
-        <Grid
-          templateColumns="repeat(auto-fit, minmax(335px, 1fr))"
-          maxWidth={1054}
-          gap={6}
-        >
-          <ObviousCard></ObviousCard>
-          <ObviousCard></ObviousCard>
-          <ObviousCard></ObviousCard>
-        </Grid>
-      </Box>
+      <Flex justify="center" w="100%" p={6} align="center" mb={6}>
+        <Box width={1054}>
+          <Text fontSize="2xl" letterSpacing={1} py={4} color="blue.800">
+            Recent Invoices
+          </Text>
+          <Grid templateColumns="repeat(auto-fit, minmax(280px, 1fr))" gap={6}>
+            <ObviousCard></ObviousCard>
+            <ObviousCard></ObviousCard>
+            <ObviousCard></ObviousCard>
+          </Grid>
+        </Box>
+      </Flex>
       <Flex maxWidth={1054} width="100%" direction="column" mb={16}>
         <Text fontSize="2xl" letterSpacing={1} py={4} color="blue.800">
           All Invoices
