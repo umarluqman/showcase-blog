@@ -1,97 +1,171 @@
 /** @jsx jsx */
-import { Avatar, Badge, Box, Button, Flex, Text } from "@chakra-ui/core";
-import { jsx } from "@emotion/core";
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  Flex,
+  Text,
+  theme,
+  Icon
+} from "@chakra-ui/core";
+import { jsx, css } from "@emotion/core";
 import { withTheme } from "emotion-theming";
 import React from "react";
 import makeData from "../../../utils/makeData";
 import Table from "../../../components/Table";
+import { useMediaPredicate } from "react-media-hook";
 
 const InvoiceTable = () => {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "No.",
-        accessor: "index+1"
-      },
-      {
-        Header: "Client",
-        accessor: "client",
-        Cell: ({
-          row: {
-            original: { client, src, email = "" }
-          }
-        }) => (
-          <Flex align="center">
-            <Avatar size="sm" name="random-image" src={src} mr={4} />
-            <Box>
-              <Text>{client}</Text>
-              <Text color="#6b7280">{email}</Text>
-            </Box>
-          </Flex>
-        )
-      },
-      {
-        Header: <Box textAlign="right">Issue Date</Box>,
-        accessor: "issueDate",
-        Cell: ({
-          row: {
-            original: { issueDate }
-          }
-        }) => <Box textAlign="right">{issueDate}</Box>
-      },
+  // console.log("theme", theme);
+  const { lg, md: medium, xl, sm: small } = theme.breakpoints;
 
-      {
-        Header: "Due Date",
-        accessor: "dueDate"
-      },
-      {
-        Header: <Box textAlign="right">Amount</Box>,
-        accessor: "amount",
-        Cell: ({
-          row: {
-            original: { amount }
-          }
-        }) => <Box textAlign="right">{amount}</Box>
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-        Cell: ({
-          row: {
-            original: { status }
-          }
-        }) => (
-          <Badge
-            borderRadius="999px"
-            px={3}
-            py={"2px"}
-            variantColor={
-              status === "Pending"
-                ? "orange"
-                : status === "Paid"
-                ? "green"
-                : status === "Overdue"
-                ? "red"
-                : ""
+  const md = useMediaPredicate(`(min-width: ${medium})`);
+  // const sm = useMediaPredicate(`(min-width: ${small})`);
+
+  const columns = React.useMemo(
+    () =>
+      md
+        ? [
+            {
+              Header: "No",
+              accessor: "index+1",
+              textAlign: "center",
+              width: 20
+            },
+            {
+              Header: "Client",
+              accessor: "client",
+              Cell: ({
+                row: {
+                  original: { client, src, email = "" }
+                }
+              }) => (
+                <Flex align="center">
+                  <Avatar size="sm" name="random-image" src={src} mr={4} />
+                  <Box>
+                    <Text>{client}</Text>
+                    <Text color="#6b7280">{email}</Text>
+                  </Box>
+                </Flex>
+              ),
+              textAlign: "left"
+            },
+            {
+              Header: "Issue Date",
+              accessor: "issueDate",
+              textAlign: "right"
+            },
+
+            {
+              Header: "Due Date",
+              accessor: "dueDate"
+            },
+            {
+              Header: <Box textAlign="right">Amount</Box>,
+              accessor: "amount",
+              Cell: ({
+                row: {
+                  original: { amount }
+                }
+              }) => <Box textAlign="right">{amount}</Box>
+            },
+            {
+              Header: "Status",
+              accessor: "status",
+              Cell: ({
+                row: {
+                  original: { status }
+                }
+              }) => (
+                <Badge
+                  borderRadius="999px"
+                  px={3}
+                  py={"2px"}
+                  variantColor={
+                    status === "Pending"
+                      ? "orange"
+                      : status === "Paid"
+                      ? "green"
+                      : status === "Overdue"
+                      ? "red"
+                      : ""
+                  }
+                  fontWeight={600}
+                  textTransform="capitalize"
+                >
+                  {status}
+                </Badge>
+              ),
+              textAlign: "center"
+            },
+            {
+              Header: "",
+              accessor: "no",
+              Cell: () => (
+                <Button variant="link" fontWeight={500} color="blue.700">
+                  View
+                </Button>
+              ),
+              // textAlign: "center",
+              width: 80
             }
-            fontWeight={600}
-            textTransform="capitalize"
-          >
-            {status}
-          </Badge>
-        )
-      },
-      {
-        Header: "",
-        accessor: "no",
-        Cell: () => (
-          <Button variant="link" fontWeight={500} color="blue.700">
-            View
-          </Button>
-        )
-      }
-    ],
-    []
+          ]
+        : [
+            {
+              Header: <Box textAlign="left">Client</Box>,
+              accessor: "client",
+              Cell: ({
+                row: {
+                  original: { client, src, email = "" }
+                }
+              }) => (
+                <Box textAlign="left">
+                  <Text>{client}</Text>
+                  {/* <Text color="#6b7280">{email}</Text> */}
+                </Box>
+              )
+            },
+            {
+              Header: <Box textAlign="right">Amount</Box>,
+              accessor: "amount",
+              Cell: ({
+                row: {
+                  original: { amount, status }
+                }
+              }) => (
+                <Flex align="center" justify="flex-end">
+                  <Box
+                    css={css`
+                      background-color: ${status === "Pending"
+                        ? theme.colors.orange[300]
+                        : status === "Paid"
+                        ? theme.colors.green[300]
+                        : status === "Overdue"
+                        ? theme.colors.red[300]
+                        : ""};
+                      width: 14px;
+                      height: 14px;
+                      border-radius: 50%;
+                    `}
+                    mr={3}
+                  ></Box>
+                  <Box textAlign="right">{amount}</Box>
+                </Flex>
+              )
+            },
+
+            {
+              Header: "",
+              accessor: "no",
+              Cell: () => {
+                return <Icon name="chevron-right"></Icon>;
+              },
+              width: 10,
+              textAlign: "center"
+            }
+          ],
+    [md]
   );
 
   const data = React.useMemo(() => makeData(20), []);

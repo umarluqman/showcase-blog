@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.5.2",
+    "@chakra-ui/core": "^0.6.1",
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
     "@svgr/webpack": "^5.2.0",
@@ -19,6 +19,7 @@
     "next": "^9.1.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-media-hook": "^0.4.4",
     "react-table": "^7.0.0-rc.16"
   },
   "devDependencies": {

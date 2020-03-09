@@ -75,30 +75,27 @@ const Table = ({
               backgroundColor: "#EDF2F77A"
             }}
           >
-            {headerGroup.headers.map((column, idx) => (
-              <Text
-                as="th"
-                fontSize="sm"
-                color="gray.500"
-                {...column.getHeaderProps()}
-                css={{
-                  textAlign: setTheadTextAlign(headerGroup.headers, idx),
-                  width:
-                    headerGroup.headers.length - 1 === idx &&
-                    !extraColumnInAction
-                      ? "8rem"
-                      : idx === 0
-                      ? "5.5rem"
-                      : "unset",
-                  textTransform: "uppercase",
-                  fontWeight: 400,
-                  padding: "1rem .75rem",
-                  letterSpacing: 1.3
-                }}
-              >
-                {column.render("Header")}
-              </Text>
-            ))}
+            {headerGroup.headers.map((column, idx) => {
+              const { width, textAlign = "left" } = column;
+              return (
+                <Text
+                  as="th"
+                  fontSize="sm"
+                  color="gray.500"
+                  {...column.getHeaderProps()}
+                  css={{
+                    textAlign,
+                    width,
+                    textTransform: "uppercase",
+                    fontWeight: 400,
+                    padding: "1rem .75rem",
+                    letterSpacing: 1.3
+                  }}
+                >
+                  {column.render("Header")}
+                </Text>
+              );
+            })}
           </tr>
         ))}
       </thead>
@@ -116,11 +113,13 @@ const Table = ({
                   }}
                 >
                   {row.cells.map((cell, idx) => {
+                    const { width, textAlign } = cell.column;
                     return (
                       <td
                         {...cell.getCellProps()}
                         css={{
-                          textAlign: setTbodyTextAlign(row.cells, idx),
+                          width,
+                          textAlign,
                           padding: "1rem .75rem"
                         }}
                       >

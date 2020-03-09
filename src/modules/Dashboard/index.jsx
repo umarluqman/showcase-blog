@@ -10,7 +10,8 @@ import {
   Flex,
   Text,
   Grid,
-  theme
+  theme,
+  Divider
 } from "@chakra-ui/core";
 import { jsx, css } from "@emotion/core";
 import { withTheme } from "emotion-theming";
@@ -18,6 +19,7 @@ import InvoiceTable from "./components/InvoiceTable";
 import dayjs from "dayjs";
 import faker from "faker";
 import Logo from "../../public/static/logo.svg";
+import { useMediaPredicate } from "react-media-hook";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -43,6 +45,13 @@ const MenuButton = ({ children, ...props }) => {
 };
 
 const SubtleCard = ({ label }) => {
+  // const md = useMedia({ minWidth: 800 });
+  console.log("theme", theme);
+  const { lg, md: medium, xl, sm: small } = theme.breakpoints;
+
+  const md = useMediaPredicate(`(min-width: ${medium})`);
+  const sm = useMediaPredicate(`(min-width: ${small})`);
+
   return (
     <Box>
       <Text
@@ -53,52 +62,61 @@ const SubtleCard = ({ label }) => {
       >
         {label}
       </Text>
-      <Text color="white" fontWeight={200} fontSize="3xl">
-        {"RM " +
-          new Intl.NumberFormat("en-MY", {
-            maximumSignificantDigits: 3
-          }).format(Math.floor(Math.random() * 10000))}
-      </Text>
-
-      <Tag
-        size="sm"
-        rounded="full"
-        variant="solid"
-        bg="#1e4e8cb8"
-        mt={2}
-        as="button"
-        _hover={{
-          bg: theme.colors.blue[700]
-        }}
-        _active={{
-          bg: theme.colors.blue[800]
-        }}
+      <Flex
+        flexDirection={md ? "column" : "row"}
+        justify={!md && "space-between"}
+        w={!md && "100%"}
+        align={!md && "center"}
       >
-        <TagLabel py={1} px={1} mr={2}>
-          View all
-        </TagLabel>
-        <Box
-          css={css`
-            background-color: ${theme.colors.blue[800]};
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            position: relative;
-            margin-right: -4px;
-          `}
-          id="circle"
+        <Text color="white" fontWeight={200} fontSize="3xl">
+          {"RM " +
+            new Intl.NumberFormat("en-MY", {
+              maximumSignificantDigits: 3
+            }).format(Math.floor(Math.random() * 10000))}
+        </Text>
+
+        <Tag
+          size="sm"
+          rounded="full"
+          variant="solid"
+          bg="#1e4e8cb8"
+          as="button"
+          _hover={{
+            bg: theme.colors.blue[700]
+          }}
+          _active={{
+            bg: theme.colors.blue[800]
+          }}
+          mt={sm ? 2 : 0}
+          width="max-content"
+          height="max-content"
         >
-          <TagIcon
-            icon="chevron-right"
-            size="18px"
-            css={{
-              position: "absolute",
-              right: 0,
-              color: "white"
-            }}
-          />
-        </Box>
-      </Tag>
+          <TagLabel py={1} px={1} mr={2}>
+            View all
+          </TagLabel>
+          <Box
+            css={css`
+              background-color: ${theme.colors.blue[800]};
+              width: 18px;
+              height: 18px;
+              border-radius: 50%;
+              position: relative;
+              margin-right: -4px;
+            `}
+            id="circle"
+          >
+            <TagIcon
+              icon="chevron-right"
+              size="18px"
+              css={{
+                position: "absolute",
+                right: 0,
+                color: "white"
+              }}
+            />
+          </Box>
+        </Tag>
+      </Flex>
     </Box>
   );
 };
@@ -170,6 +188,10 @@ const ObviousCard = () => {
   );
 };
 const Index = () => {
+  const { lg, md: medium, xl, sm: small } = theme.breakpoints;
+
+  const md = useMediaPredicate(`(min-width: ${medium})`);
+  const sm = useMediaPredicate(`(min-width: ${small})`);
   return (
     <Flex align="center" minHeight="100vh" direction="column" bg="gray.100">
       <Flex justify="space-between" w="100%" p={4} align="center">
@@ -210,9 +232,11 @@ const Index = () => {
       </Flex>
       <Flex justify="center" w="100%" p={6} align="center" bg="blue.600" mb={6}>
         <Box width={1054}>
-          <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6}>
+          <Grid templateColumns="repeat(auto-fit, minmax(240px, 1fr))" gap={6}>
             <SubtleCard label="overdue"></SubtleCard>
+            {!sm && <Divider borderColor="blue.500" my={0}></Divider>}
             <SubtleCard label="in draft"></SubtleCard>
+            {!sm && <Divider borderColor="blue.500" my={0}></Divider>}
             <SubtleCard label="total outstanding"></SubtleCard>
           </Grid>
         </Box>
@@ -229,11 +253,13 @@ const Index = () => {
           </Grid>
         </Box>
       </Flex>
-      <Flex maxWidth={1054} width="100%" direction="column" mb={16}>
-        <Text fontSize="2xl" letterSpacing={1} py={4} color="blue.800">
-          All Invoices
-        </Text>
-        <InvoiceTable />
+      <Flex width="100%" mb={16} p={6} justify="center" align="flex-start">
+        <Box width={1054}>
+          <Text fontSize="2xl" letterSpacing={1} py={4} color="blue.800">
+            All Invoices
+          </Text>
+          <InvoiceTable />
+        </Box>
       </Flex>
     </Flex>
   );
