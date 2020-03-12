@@ -16,12 +16,13 @@ import {
 } from "@chakra-ui/core";
 import { jsx, css } from "@emotion/core";
 import { withTheme } from "emotion-theming";
-import InvoiceTable from "./components/InvoiceTable";
-import dayjs from "dayjs";
 import faker from "faker";
 import { useMediaPredicate } from "react-media-hook";
 import { Menu } from "react-feather";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+import dayjs from "dayjs";
+const InvoiceTable = dynamic(import("./components/InvoiceTable"));
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
