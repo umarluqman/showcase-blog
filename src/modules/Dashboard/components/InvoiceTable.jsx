@@ -17,7 +17,6 @@ import Table from "../../../components/Table";
 import { useMediaPredicate } from "react-media-hook";
 
 const InvoiceTable = () => {
-  // console.log("theme", theme);
   const { lg, md: medium, xl, sm: small } = theme.breakpoints;
 
   const md = useMediaPredicate(`(min-width: ${medium})`);
@@ -27,12 +26,6 @@ const InvoiceTable = () => {
     () =>
       md
         ? [
-            {
-              Header: "No",
-              accessor: "index+1",
-              textAlign: "center",
-              width: 20
-            },
             {
               Header: "Client",
               accessor: "client",
@@ -107,7 +100,6 @@ const InvoiceTable = () => {
                   View
                 </Button>
               ),
-              // textAlign: "center",
               width: 80
             }
           ]

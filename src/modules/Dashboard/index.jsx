@@ -11,15 +11,17 @@ import {
   Text,
   Grid,
   theme,
-  Divider
+  Divider,
+  useDisclosure
 } from "@chakra-ui/core";
 import { jsx, css } from "@emotion/core";
 import { withTheme } from "emotion-theming";
 import InvoiceTable from "./components/InvoiceTable";
 import dayjs from "dayjs";
 import faker from "faker";
-import Logo from "../../public/static/logo.svg";
 import { useMediaPredicate } from "react-media-hook";
+import { Menu } from "react-feather";
+import { useState } from "react";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -29,6 +31,24 @@ function randomDate(start, end) {
     start.getTime() + Math.random() * (end.getTime() - start.getTime())
   );
 }
+
+const MenuButtonMobile = ({ children, onClick, active }) => {
+  return (
+    <Button
+      variant="ghost"
+      variantColor="blue"
+      display="inline-block"
+      textAlign="left"
+      isFullWidth
+      color="blue.800"
+      borderRadius={4}
+      onClick={onClick}
+      bg={active && "hsla(203, 82%, 76%, 0.12)"}
+    >
+      {children}
+    </Button>
+  );
+};
 
 const MenuButton = ({ children, ...props }) => {
   return (
@@ -46,7 +66,7 @@ const MenuButton = ({ children, ...props }) => {
 
 const SubtleCard = ({ label }) => {
   // const md = useMedia({ minWidth: 800 });
-  console.log("theme", theme);
+
   const { lg, md: medium, xl, sm: small } = theme.breakpoints;
 
   const md = useMediaPredicate(`(min-width: ${medium})`);
@@ -192,26 +212,107 @@ const Index = () => {
 
   const md = useMediaPredicate(`(min-width: ${medium})`);
   const sm = useMediaPredicate(`(min-width: ${small})`);
+
+  const [active, setActive] = useState("dashboard");
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const onNav = menu => () => {
+    setActive(menu);
+  };
+
   return (
     <Flex align="center" minHeight="100vh" direction="column" bg="gray.100">
-      <Flex justify="space-between" w="100%" p={4} align="center">
-        {/* <Logo viewBox="0 30 256 40" height="40px"></Logo> */}
+      <Flex
+        justify="space-between"
+        w="100%"
+        p={4}
+        pb={!isOpen ? 4 : 0}
+        align="center"
+      >
         <Box w={256}></Box>
-        <Grid templateColumns="1fr 1fr 1fr 1fr" gap={8}>
-          <MenuButton>Dashboard</MenuButton>
-          <MenuButton>Invoices</MenuButton>
-          <MenuButton>Clients</MenuButton>
-          <MenuButton>Expenses</MenuButton>
-        </Grid>
-        <Flex align="center">
+        {md ? (
+          <>
+            <Grid templateColumns="1fr 1fr 1fr 1fr" gap={8}>
+              <MenuButton>Dashboard</MenuButton>
+              <MenuButton>Invoices</MenuButton>
+              <MenuButton>Clients</MenuButton>
+              <MenuButton>Expenses</MenuButton>
+            </Grid>
+            <Flex align="center">
+              <Button
+                color="white"
+                bg="blue.600"
+                leftIcon="add"
+                borderRadius={999}
+                py={3}
+                px={6}
+                mr={8}
+                _hover={{
+                  bg: "blue.700",
+                  transition: "0.3s"
+                }}
+                _active={{
+                  bg: "blue.800"
+                }}
+                fontWeight={400}
+              >
+                New Invoice
+              </Button>
+              <Avatar
+                mr={4}
+                src="https://source.unsplash.com/random/50x50"
+                alt="random-image-from-unsplash"
+              ></Avatar>
+            </Flex>
+          </>
+        ) : (
+          <Menu
+            color={theme.colors.blue[800]}
+            size={32}
+            onClick={isOpen ? onClose : onOpen}
+            css={{
+              "&:hover": {
+                cursor: "pointer"
+              }
+            }}
+          ></Menu>
+        )}
+      </Flex>
+      {isOpen && (
+        <Flex width="100%" direction="column" p={3} borderRadius={4}>
+          <MenuButtonMobile
+            onClick={onNav("dashboard")}
+            active={active === "dashboard"}
+          >
+            Dashboard
+          </MenuButtonMobile>
+          <MenuButtonMobile
+            onClick={onNav("invoices")}
+            active={active === "invoices"}
+          >
+            Invoices
+          </MenuButtonMobile>
+          <MenuButtonMobile
+            onClick={onNav("clients")}
+            active={active === "clients"}
+          >
+            Clients
+          </MenuButtonMobile>
+          <MenuButtonMobile
+            onClick={onNav("expenses")}
+            active={active === "expenses"}
+          >
+            Expenses
+          </MenuButtonMobile>
           <Button
+            m={4}
             color="white"
             bg="blue.600"
             leftIcon="add"
             borderRadius={999}
             py={3}
-            px={6}
-            mr={8}
+            px={3}
             _hover={{
               bg: "blue.700",
               transition: "0.3s"
@@ -219,18 +320,37 @@ const Index = () => {
             _active={{
               bg: "blue.800"
             }}
-            fontWeight={400}
+            fontWeight={500}
+            fontSize="14px"
+            w="160px"
           >
             New Invoice
           </Button>
-          <Avatar
-            mr={4}
-            src="https://source.unsplash.com/random/50x50"
-            alt="random-image-from-unsplash"
-          ></Avatar>
+          <Divider></Divider>
+          <Flex align="center">
+            <Avatar
+              mr={4}
+              src="https://source.unsplash.com/random/50x50"
+              alt="random-image-from-unsplash"
+            ></Avatar>
+            <Box>
+              <Text color="blue.800" fontWeight={500}>
+                Umar Luqman
+              </Text>
+              <Text color="gray.500">umarluqman.78@gmail.com</Text>
+            </Box>
+          </Flex>
         </Flex>
-      </Flex>
-      <Flex justify="center" w="100%" p={6} align="center" bg="blue.600" mb={6}>
+      )}
+      <Flex
+        justify="center"
+        w="100%"
+        p={6}
+        align="center"
+        bg="blue.600"
+        mb={6}
+        transition="0.3"
+      >
         <Box width={1054}>
           <Grid templateColumns="repeat(auto-fit, minmax(240px, 1fr))" gap={6}>
             <SubtleCard label="overdue"></SubtleCard>

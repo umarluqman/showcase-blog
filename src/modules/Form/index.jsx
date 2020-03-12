@@ -23,7 +23,6 @@ const Form = () => {
     }
   });
 
-  console.log("values", formProps.values);
   return (
     <Flex
       display="flex"
