@@ -15,7 +15,7 @@ import * as React from "react";
 
 const Basics = ({ values, ...formProps }) => {
   return (
-    <Grid templateColumns={{ xs: "1fr", md: "1fr 2fr" }} p={4} mt={2}>
+    <Grid templateColumns={{ base: "1fr", md: "1fr 2fr" }} p={4} mt={2}>
       <Box mr={8} mb={4}>
         <Text fontSize="xl" mb={4}>
           Basics

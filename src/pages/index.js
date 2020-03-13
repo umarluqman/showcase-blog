@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Flex, Text, Button } from "@chakra-ui/core";
+import { Flex, Text, Button, theme } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import { withTheme } from "emotion-theming";
 import Link from "next/link";

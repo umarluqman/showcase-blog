@@ -1,21 +1,27 @@
-import React from 'react'
-import NextApp from 'next/app'
-import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core'
+import React, { Children } from "react";
+import NextApp from "next/app";
+import { ThemeProvider, CSSReset, ColorModeProvider } from "@chakra-ui/core";
 
-import theme from '../theme'
+import theme from "../theme";
+
+const Page = ({ children }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <CSSReset />
+      {children}
+    </ThemeProvider>
+  );
+};
 
 class App extends NextApp {
   render() {
-    const { Component } = this.props
+    const { Component } = this.props;
     return (
-      <ThemeProvider theme={theme}>
-        <CSSReset />
-        <ColorModeProvider>
-          <Component />
-        </ColorModeProvider>
-      </ThemeProvider>
-    )
+      <Page>
+        <Component />
+      </Page>
+    );
   }
 }
 
-export default App
+export default App;

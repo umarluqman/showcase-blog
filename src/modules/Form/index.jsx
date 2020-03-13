@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Flex, Grid, Text } from "@chakra-ui/core";
-import { withTheme } from "emotion-theming";
+// import { withTheme } from "emotion-theming";
 import { useFormik } from "formik";
 import * as React from "react";
 import Basics from "./components/Basics";
@@ -59,7 +59,11 @@ const Form = () => {
         <Divider borderColor="gray.300" width="100%" />
         <Flex justifyContent="flex-end" width="100%">
           <Box width={{ xs: "100%", md: 380 }}>
-            <Grid templateColumns={{ xs: "1fr", md: "1fr 1fr" }} m={4} gap={4}>
+            <Grid
+              templateColumns={{ base: "1fr", md: "1fr 1fr" }}
+              m={4}
+              gap={4}
+            >
               <Button variantColor="blue" variant="outline" width={"100%"}>
                 Cancel
               </Button>
@@ -74,4 +78,4 @@ const Form = () => {
   );
 };
 
-export default withTheme(React.memo(Form));
+export default React.memo(Form);
