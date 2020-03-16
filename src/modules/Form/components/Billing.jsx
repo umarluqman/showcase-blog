@@ -13,6 +13,7 @@ import {
   theme
 } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
+import { useMediaPredicate } from "react-media-hook";
 import * as React from "react";
 
 const PlanBox = ({ name, size, setPlan, plan }) => {
@@ -79,10 +80,13 @@ const PlanBox = ({ name, size, setPlan, plan }) => {
 };
 
 const Billing = ({ values, ...formProps }) => {
+  const { lg, md: medium, xl, sm: small } = theme.breakpoints;
+
+  const md = useMediaPredicate(`(min-width: ${medium})`);
   const [plan, setPlan] = React.useState("BASIC");
 
   return (
-    <Grid templateColumns={{ xs: "1fr", md: "1fr 2fr" }} p={4} mt={2}>
+    <Grid templateColumns={md ? "1fr 2fr" : "1fr"} p={4} mt={2}>
       <Box mr={8} mb={4}>
         <Text fontSize="xl" mb={4}>
           Billing

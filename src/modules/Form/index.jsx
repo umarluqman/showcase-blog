@@ -1,13 +1,17 @@
-import { Box, Button, Divider, Flex, Grid, Text } from "@chakra-ui/core";
+import { Box, Button, Divider, Flex, Grid, Text, theme } from "@chakra-ui/core";
 // import { withTheme } from "emotion-theming";
 import { useFormik } from "formik";
 import * as React from "react";
 import Basics from "./components/Basics";
 import Billing from "./components/Billing";
 import Notification from "./components/Notification";
+import { useMediaPredicate } from "react-media-hook";
 import Profile from "./components/Profile";
 
 const Form = () => {
+  const { lg, md: medium, xl, sm: small } = theme.breakpoints;
+
+  const md = useMediaPredicate(`(min-width: ${medium})`);
   const { handleSubmit, ...formProps } = useFormik({
     initialValues: {
       email: "",
@@ -58,12 +62,8 @@ const Form = () => {
         <Notification {...formProps} />
         <Divider borderColor="gray.300" width="100%" />
         <Flex justifyContent="flex-end" width="100%">
-          <Box width={{ xs: "100%", md: 380 }}>
-            <Grid
-              templateColumns={{ base: "1fr", md: "1fr 1fr" }}
-              m={4}
-              gap={4}
-            >
+          <Box width={md ? 380 : "100%"}>
+            <Grid templateColumns={md ? "1fr 1fr" : "1fr"} m={4} gap={4}>
               <Button variantColor="blue" variant="outline" width={"100%"}>
                 Cancel
               </Button>
