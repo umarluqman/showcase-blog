@@ -29,10 +29,11 @@ const Index = () => {
             Dashboard
           </Button>
         </Link>
-
-        <Button variant="ghost" variantColor="pink" disabled>
-          Landing Page
-        </Button>
+        <Link href="/landing-page">
+          <Button variant="ghost" variantColor="pink">
+            Landing Page
+          </Button>
+        </Link>
         <Link href="/complex-form">
           <Button variant="ghost" variantColor="pink">
             Complex Form

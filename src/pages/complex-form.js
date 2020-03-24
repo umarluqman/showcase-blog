@@ -1,3 +1,3 @@
-import Form from "../modules/Form";
+import ComplexForm from "../modules/ComplexForm";
 
-export default Form;
+export default ComplexForm;
