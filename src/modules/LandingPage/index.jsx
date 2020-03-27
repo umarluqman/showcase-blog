@@ -18,11 +18,11 @@ import Plugin from "../../public/static/icon-plugin.svg";
 import Latency from "../../public/static/icon-latency.svg";
 import Control from "../../public/static/icon-control.svg";
 import { jsx } from "@emotion/core";
-import { useMediaPredicate } from "react-media-hook";
+import useMedia from "use-media";
 import { useState } from "react";
 
 const Index = () => {
-  const xs = useMediaPredicate({ minWidth: "40em" });
+  const xs = useMedia({ minWidth: "40em" });
 
   const [email, setEmail] = useState("");
 
@@ -52,34 +52,76 @@ const Index = () => {
             That's why we're on a mission to replace it.
           </Text>
           <Flex align="center" mb={8}>
-            <Box
-              fontWeight={900}
-              fontSize="1xl"
-              color="#FFFFFF"
-              mr={2}
-              backgroundColor="#4652AF"
-              width="max-content"
-              height="max-content"
-              borderRadius="50%"
-              px={2}
-              py={1}
-            >
-              W
-            </Box>
-
-            <Text letterSpacing={0} textTransform="lowercase" color="#465568">
-              <span
-                css={{
-                  letterSpacing: 1.8,
-                  textTransform: "uppercase",
-                  color: "#1F2E41"
-                }}
+            {xs && (
+              <Box
+                fontWeight={900}
+                fontSize="2xl"
+                color="#FFFFFF"
+                mr={2}
+                backgroundColor="#4652AF"
+                width={12}
+                height={12}
+                borderRadius="50%"
+                p={"10px"}
+                pt={"7px"}
+                textAlign="center"
               >
-                hen Slack bought Screehero
-              </span>
-              , we were sure someone new would come along to make a tool
-              specifically for pair programming.
-            </Text>
+                W
+              </Box>
+            )}
+
+            {!xs ? (
+              <Box w="100%">
+                <Box w="max-content" float="left">
+                  <Box
+                    fontWeight={900}
+                    fontSize="2xl"
+                    color="#FFFFFF"
+                    mr={2}
+                    backgroundColor="#4652AF"
+                    width={12}
+                    height={12}
+                    borderRadius="50%"
+                    p={2}
+                    textAlign="center"
+                  >
+                    W
+                  </Box>
+                </Box>
+                <Text
+                  letterSpacing={0}
+                  textTransform="lowercase"
+                  color="#465568"
+                  float="none"
+                >
+                  <span
+                    css={{
+                      letterSpacing: 1.8,
+                      textTransform: "uppercase",
+                      color: "#1F2E41"
+                    }}
+                  >
+                    hen Slack bought Screehero
+                  </span>
+                  , we were sure someone new would come along to make a tool
+                  specifically for pair programming.
+                </Text>
+              </Box>
+            ) : (
+              <Text letterSpacing={0} textTransform="lowercase" color="#465568">
+                <span
+                  css={{
+                    letterSpacing: 1.8,
+                    textTransform: "uppercase",
+                    color: "#1F2E41"
+                  }}
+                >
+                  hen Slack bought Screehero
+                </span>
+                , we were sure someone new would come along to make a tool
+                specifically for pair programming.
+              </Text>
+            )}
           </Flex>
           <Text mb={4} color="#465568">
             But four years later, no one has.{" "}
