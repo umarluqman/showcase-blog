@@ -36,12 +36,14 @@ const Notification = ({ ...formProps }) => {
       >
         <Flex width="100%">
           <FormControl width="100%" mb={8} mr={4}>
-            <CheckboxGroup
-              variantColor="blue"
-              defaultValue={["naruto", "kakashi"]}
-              size="lg"
-            >
-              <Checkbox value="naruto" alignItems="baseline" mb={4}>
+            <CheckboxGroup variantColor="blue" defaultValue={[]} size="lg">
+              <Checkbox
+                value="activity"
+                alignItems="baseline"
+                onChange={formProps.handleChange}
+                id="notification"
+                mb={4}
+              >
                 <Box ml={3}>
                   <Text>Account Activity</Text>
                   <FormHelperText mt={1}>
@@ -50,15 +52,27 @@ const Notification = ({ ...formProps }) => {
                   </FormHelperText>
                 </Box>
               </Checkbox>
-              <Checkbox value="naruto" alignItems="baseline" mb={4}>
+              <Checkbox
+                value="news"
+                alignItems="baseline"
+                mb={4}
+                onChange={formProps.handleChange}
+                id="notification"
+              >
                 <Box ml={3}>
-                  <Text>New For You</Text>
+                  <Text>News For You</Text>
                   <FormHelperText mt={1}>
                     A weekly email featuring activity from people you folow
                   </FormHelperText>
                 </Box>
               </Checkbox>
-              <Checkbox value="naruto" alignItems="baseline" mb={4}>
+              <Checkbox
+                value="meetup"
+                alignItems="baseline"
+                mb={4}
+                onChange={formProps.handleChange}
+                id="notification"
+              >
                 <Box ml={3}>
                   <Text>Meetups Near You</Text>
                   <FormHelperText mt={1}>
