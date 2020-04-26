@@ -10,7 +10,7 @@ import {
   InputGroup,
   Button,
   Grid,
-  SimpleGrid
+  SimpleGrid,
 } from "@chakra-ui/core";
 import Logo from "../../public/static/tuple-logo.svg";
 import CommandLine from "../../public/static/icon-command-line.svg";
@@ -26,12 +26,12 @@ const Index = () => {
 
   const [email, setEmail] = useState("");
 
-  const handleEmail = e => {
+  const handleEmail = (e) => {
     setEmail(e.target.event);
   };
 
   return (
-    <Box>
+    <Box w="full">
       <Flex
         fullWidth
         background="transparent linear-gradient(180deg, #FFFFFF 0%, #F4F6F9 100%)"
@@ -98,7 +98,7 @@ const Index = () => {
                     css={{
                       letterSpacing: 1.8,
                       textTransform: "uppercase",
-                      color: "#1F2E41"
+                      color: "#1F2E41",
                     }}
                   >
                     hen Slack bought Screehero
@@ -113,7 +113,7 @@ const Index = () => {
                   css={{
                     letterSpacing: 1.8,
                     textTransform: "uppercase",
-                    color: "#1F2E41"
+                    color: "#1F2E41",
                   }}
                 >
                   hen Slack bought Screehero
@@ -170,10 +170,10 @@ const Index = () => {
                   color="white"
                   backgroundColor="#5B67C9"
                   _hover={{
-                    backgroundColor: "#6f8bfb"
+                    backgroundColor: "#6f8bfb",
                   }}
                   _active={{
-                    backgroundColor: "#6f8bfb"
+                    backgroundColor: "#6f8bfb",
                   }}
                 >
                   <Text fontSize="sm" letterSpacing={0.5}>
@@ -188,11 +188,11 @@ const Index = () => {
                 color="white"
                 backgroundColor="#5B67C9"
                 _hover={{
-                  backgroundColor: "#6f8bfb"
+                  backgroundColor: "#6f8bfb",
                 }}
                 mt={3}
                 _active={{
-                  backgroundColor: "#6f8bfb"
+                  backgroundColor: "#6f8bfb",
                 }}
               >
                 <Text fontSize="sm" letterSpacing={0.5}>

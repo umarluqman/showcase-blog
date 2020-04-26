@@ -12,7 +12,7 @@ import {
   Grid,
   theme,
   Divider,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/core";
 import { jsx, css } from "@emotion/core";
 import { withTheme } from "emotion-theming";
@@ -57,7 +57,7 @@ const MenuButton = ({ children, ...props }) => {
       variant="ghost"
       variantColor="blue"
       css={{
-        color: theme.colors.blue[800]
+        color: theme.colors.blue[800],
       }}
     >
       {children}
@@ -92,7 +92,7 @@ const SubtleCard = ({ label }) => {
         <Text color="white" fontWeight={200} fontSize="3xl">
           {"RM " +
             new Intl.NumberFormat("en-MY", {
-              maximumSignificantDigits: 3
+              maximumSignificantDigits: 3,
             }).format(Math.floor(Math.random() * 10000))}
         </Text>
 
@@ -103,10 +103,10 @@ const SubtleCard = ({ label }) => {
           bg="#1e4e8cb8"
           as="button"
           _hover={{
-            bg: theme.colors.blue[700]
+            bg: theme.colors.blue[700],
           }}
           _active={{
-            bg: theme.colors.blue[800]
+            bg: theme.colors.blue[800],
           }}
           mt={sm ? 2 : 0}
           width="max-content"
@@ -132,7 +132,7 @@ const SubtleCard = ({ label }) => {
               css={{
                 position: "absolute",
                 right: 0,
-                color: "white"
+                color: "white",
               }}
             />
           </Box>
@@ -185,7 +185,7 @@ const ObviousCard = () => {
         >
           {"RM " +
             new Intl.NumberFormat("en-MY", {
-              maximumSignificantDigits: 3
+              maximumSignificantDigits: 3,
             }).format(Math.floor(Math.random() * 10000))}
         </Text>
         <Text color="#6b7280">
@@ -218,12 +218,18 @@ const Index = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const onNav = menu => () => {
+  const onNav = (menu) => () => {
     setActive(menu);
   };
 
   return (
-    <Flex align="center" minHeight="100vh" direction="column" bg="gray.100">
+    <Flex
+      align="center"
+      minHeight="100vh"
+      w="full"
+      direction="column"
+      bg="gray.100"
+    >
       <Flex
         justify="space-between"
         w="100%"
@@ -251,10 +257,10 @@ const Index = () => {
                 mr={8}
                 _hover={{
                   bg: "blue.700",
-                  transition: "0.3s"
+                  transition: "0.3s",
                 }}
                 _active={{
-                  bg: "blue.800"
+                  bg: "blue.800",
                 }}
                 fontWeight={400}
               >
@@ -274,8 +280,8 @@ const Index = () => {
             onClick={isOpen ? onClose : onOpen}
             css={{
               "&:hover": {
-                cursor: "pointer"
-              }
+                cursor: "pointer",
+              },
             }}
           ></Menu>
         )}
@@ -316,10 +322,10 @@ const Index = () => {
             px={3}
             _hover={{
               bg: "blue.700",
-              transition: "0.3s"
+              transition: "0.3s",
             }}
             _active={{
-              bg: "blue.800"
+              bg: "blue.800",
             }}
             fontWeight={500}
             fontSize="14px"

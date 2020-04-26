@@ -23,8 +23,8 @@ const Form = () => {
       username: "",
       aboutYou: "",
       plan: null,
-      notification: []
-    }
+      notification: [],
+    },
   });
 
   return (

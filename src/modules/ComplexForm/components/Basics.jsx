@@ -10,7 +10,7 @@ import {
   Input,
   Text,
   Select,
-  theme
+  theme,
 } from "@chakra-ui/core";
 import { useMediaPredicate } from "react-media-hook";
 import * as React from "react";
@@ -65,7 +65,10 @@ const Basics = ({ values, ...formProps }) => {
             value={values.language}
             {...formProps}
             id="language"
-          />
+          >
+            <option value="malay">Bahasa Malaysia</option>
+            <option value="english">English</option>
+          </Select>
 
           <FormErrorMessage>Error message</FormErrorMessage>
         </FormControl>
@@ -77,7 +80,10 @@ const Basics = ({ values, ...formProps }) => {
             value={values.country}
             {...formProps}
             id="country"
-          />
+          >
+            {" "}
+            <option value="my">Malaysia</option>
+          </Select>
           <FormErrorMessage>Error message</FormErrorMessage>
         </FormControl>
       </Flex>

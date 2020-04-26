@@ -10,7 +10,7 @@ import {
   Text,
   Textarea,
   Grid,
-  theme
+  theme,
 } from "@chakra-ui/core";
 import { useMediaPredicate } from "react-media-hook";
 
@@ -52,7 +52,7 @@ const Profile = ({ values, ...formProps }) => {
               focusBorderColor="blue.500"
               errorBorderColor="red.500"
               value={values.firstName}
-              {...formProps}
+              onChange={formProps.handleChange}
               id="firstName"
             />
             <FormErrorMessage>Error message</FormErrorMessage>
@@ -67,7 +67,7 @@ const Profile = ({ values, ...formProps }) => {
               focusBorderColor="blue.500"
               errorBorderColor="red.500"
               value={values.lastName}
-              {...formProps}
+              onChange={formProps.handleChange}
               id="lastName"
             />
             <FormErrorMessage>Error message</FormErrorMessage>
@@ -92,6 +92,9 @@ const Profile = ({ values, ...formProps }) => {
             isFullWidth
             focusBorderColor="blue.500"
             errorBorderColor="red.500"
+            value={values.username}
+            onChange={formProps.handleChange}
+            id="username"
           />
         </FormControl>
         <FormControl mb={8} width="100%">
@@ -100,7 +103,7 @@ const Profile = ({ values, ...formProps }) => {
             focusBorderColor="blue.500"
             errorBorderColor="red.500"
             value={values.aboutYou}
-            {...formProps}
+            onChange={formProps.handleChange}
             id="aboutYou"
           />
           <FormErrorMessage>Error message</FormErrorMessage>
