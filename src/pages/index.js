@@ -2,10 +2,12 @@
 import { Flex, Text, Button, Box, theme } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import { Square, Triangle, Circle } from "react-feather";
-import Dashboard from "../modules/Dashboard";
-import ComplexForm from "../modules/ComplexForm";
-import LandingPage from "../modules/LandingPage";
+import dynamic from "next/dynamic";
 import { useState } from "react";
+
+const Dashboard = dynamic(() => import("../modules/Dashboard"));
+const LandingPage = dynamic(() => import("../modules/LandingPage"));
+const ComplexForm = dynamic(() => import("../modules/ComplexForm"));
 
 const Index = () => {
   const [page, setPage] = useState("");
