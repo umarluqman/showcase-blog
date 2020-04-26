@@ -1,21 +1,16 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import { memo, useEffect } from "react";
 import { useTable, usePagination } from "react-table";
-import { theme, Text, Flex } from "@chakra-ui/core";
-import { StyledTable, NoDataRow } from "./styles";
+import { theme, Text } from "@chakra-ui/core";
+import { StyledTable } from "./styles";
 
 const Table = ({
   columns = [],
   data = [],
   fetchData = () => {},
-  loading = false,
   pageCount: controlledPageCount,
-
   selectedRows = [],
-  noDataText = "",
-  extraColumnInAction,
-  className
 }) => {
   const {
     getTableProps,
@@ -23,15 +18,8 @@ const Table = ({
     headerGroups,
     prepareRow,
     page,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
 
-    state: { pageIndex, pageSize }
+    state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,
@@ -39,7 +27,7 @@ const Table = ({
       initialState: { pageIndex: 0, pageSize: 10 },
       manualPagination: !!controlledPageCount,
       pageCount: controlledPageCount,
-      expandSubRows: false
+      expandSubRows: false,
     },
 
     usePagination
@@ -49,30 +37,18 @@ const Table = ({
     fetchData({ pageIndex, pageSize });
   }, [fetchData, pageIndex, pageSize]);
 
-  const setTheadTextAlign = (items, idx) => {
-    return page.length === 0 || idx !== 0
-      ? idx === items.length - 1
-        ? "center"
-        : "left"
-      : "center";
-  };
-
-  const setTbodyTextAlign = (items, idx) => {
-    return idx === 0 ? "center" : items.length - 1 === idx ? "center" : "left";
-  };
-
-  const setTbodyRowBg = row => {
+  const setTbodyRowBg = (row) => {
     return selectedRows.includes(row.original.id) && theme.colors.gray[200];
   };
 
   return (
-    <StyledTable {...getTableProps()} className={className}>
+    <StyledTable {...getTableProps()}>
       <thead>
-        {headerGroups.map(headerGroup => (
+        {headerGroups.map((headerGroup) => (
           <tr
             {...headerGroup.getHeaderGroupProps()}
             css={{
-              backgroundColor: "#EDF2F77A"
+              backgroundColor: "#EDF2F77A",
             }}
           >
             {headerGroup.headers.map((column, idx) => {
@@ -89,7 +65,7 @@ const Table = ({
                     textTransform: "uppercase",
                     fontWeight: 400,
                     padding: "1rem .75rem",
-                    letterSpacing: 1.3
+                    letterSpacing: 1.3,
                   }}
                 >
                   {column.render("Header")}
@@ -101,7 +77,7 @@ const Table = ({
       </thead>
       <tbody {...getTableBodyProps()}>
         {page.map(
-          row =>
+          (row) =>
             prepareRow(row) || (
               <React.Fragment key={row.index}>
                 <tr
@@ -109,10 +85,10 @@ const Table = ({
                   css={{
                     backgroundColor: setTbodyRowBg(row),
                     borderRadius: 2,
-                    fontSize: 14
+                    fontSize: 14,
                   }}
                 >
-                  {row.cells.map((cell, idx) => {
+                  {row.cells.map((cell) => {
                     const { width, textAlign } = cell.column;
                     return (
                       <td
@@ -120,7 +96,7 @@ const Table = ({
                         css={{
                           width,
                           textAlign,
-                          padding: "1rem .75rem"
+                          padding: "1rem .75rem",
                         }}
                       >
                         {cell.render("Cell")}

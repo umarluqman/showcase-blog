@@ -3,10 +3,9 @@ import styled from "@emotion/styled";
 import { theme } from "@chakra-ui/core";
 
 export const StyledTable = styled("table")(
-  props =>
+  () =>
     css`
       border: none;
-      /* margin-bottom: 16px; */
       width: 100%;
       border-radius: 8px;
 
@@ -16,12 +15,6 @@ export const StyledTable = styled("table")(
         display: table-row;
       }
       background-color: white;
-
-      /* th,
-  td {
-    height: 48px;
-    border: none;
-  } */
       td {
         border-top-width: 1.2px;
         border-top-style: solid;
@@ -37,10 +30,3 @@ export const StyledTable = styled("table")(
       }
     `
 );
-
-export const NoDataRow = styled.td`
-  color: ${theme.colors.black[50]};
-  font-size: 14px;
-  font-weight: 400;
-  padding: 1rem;
-`;
