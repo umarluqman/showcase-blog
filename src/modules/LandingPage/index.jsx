@@ -44,10 +44,10 @@ const Index = () => {
           <Box pt={12} pb={6}>
             <Logo></Logo>
           </Box>
-          <Text fontSize="5xl" color="#1F2E41" lineHeight="1.1" mb={4}>
+          <Text fontSize="4xl" color="#1F2E41" lineHeight="1.1" mb={4}>
             Remember when Slack stole Screenhero from us?
           </Text>
-          <Text fontSize="3xl" color="#465568" lineHeight="1.2" mb={8}>
+          <Text fontSize="2xl" color="#465568" lineHeight="1.2" mb={8}>
             We do too, and it sucked.<br></br>
             That's why we're on a mission to replace it.
           </Text>
@@ -84,6 +84,7 @@ const Index = () => {
                     borderRadius="50%"
                     p={2}
                     textAlign="center"
+                    pt={"0.4rem"}
                   >
                     W
                   </Box>

@@ -7,7 +7,7 @@ import {
   FormHelperText,
   Grid,
   Text,
-  theme
+  theme,
 } from "@chakra-ui/core";
 import * as React from "react";
 import { useMediaPredicate } from "react-media-hook";
@@ -36,13 +36,19 @@ const Notification = ({ ...formProps }) => {
       >
         <Flex width="100%">
           <FormControl width="100%" mb={8} mr={4}>
-            <CheckboxGroup variantColor="blue" defaultValue={[]} size="lg">
+            <CheckboxGroup
+              variantColor="blue"
+              defaultValue={[]}
+              size="lg"
+              borderRadius={"0.4rem"}
+            >
               <Checkbox
                 value="activity"
                 alignItems="baseline"
                 onChange={formProps.handleChange}
                 id="notification"
                 mb={4}
+                borderColor="gray.300"
               >
                 <Box ml={3}>
                   <Text>Account Activity</Text>
@@ -58,6 +64,7 @@ const Notification = ({ ...formProps }) => {
                 mb={4}
                 onChange={formProps.handleChange}
                 id="notification"
+                borderColor="gray.300"
               >
                 <Box ml={3}>
                   <Text>News For You</Text>
@@ -72,6 +79,7 @@ const Notification = ({ ...formProps }) => {
                 mb={4}
                 onChange={formProps.handleChange}
                 id="notification"
+                borderColor="gray.300"
               >
                 <Box ml={3}>
                   <Text>Meetups Near You</Text>

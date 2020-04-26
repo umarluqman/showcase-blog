@@ -336,11 +336,11 @@ const Index = () => {
           <Divider></Divider>
           <Flex align="center">
             <Avatar
-              mr={4}
+              mx={4}
               src="https://source.unsplash.com/random/50x50"
               alt="random-image-from-unsplash"
             ></Avatar>
-            <Box>
+            <Box p={2}>
               <Text color="blue.800" fontWeight={500}>
                 Umar Luqman
               </Text>

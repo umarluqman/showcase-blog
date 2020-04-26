@@ -10,7 +10,7 @@ import {
   FormLabel,
   Grid,
   Text,
-  theme
+  theme,
 } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import { useMediaPredicate } from "react-media-hook";
@@ -31,23 +31,24 @@ const PlanBox = ({ name, size, setPlan, plan }) => {
         selected
           ? {
               "&:hover": {
-                cursor: "pointer"
+                cursor: "pointer",
               },
               transition: "0.3s",
-              backgroundColor: theme.colors.teal[50]
+              backgroundColor: theme.colors.teal[50],
             }
           : {
               "&:hover": {
                 cursor: "pointer",
                 transition: "0.3s",
                 backgroundColor: "#e6fffa3d",
-                borderColor: theme.colors.teal[400]
-              }
+                borderColor: theme.colors.teal[400],
+              },
             }
       }
       textAlign="left"
       height="100%"
       onClick={() => setPlan(name)}
+      as="button"
     >
       <Text
         fontSize="sm"
