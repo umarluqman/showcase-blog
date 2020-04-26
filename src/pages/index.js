@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Flex, Text, Button, Box, theme } from "@chakra-ui/core";
+import { Flex, Text, Button, Box, theme, Link } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import { Square, Triangle, Circle } from "react-feather";
 import dynamic from "next/dynamic";
@@ -35,30 +35,35 @@ const Index = () => {
           <Text color="white" lineHeight={1.8}>
             Collection of user interfaces made up with ReactJS & 👩🏻‍🎤 Emotion (CSS
             in JS). Most of design elements are inspired by the{" "}
-            <Button
-              variant="link"
-              href="https://refactoringui.com/book/"
-              isExternal
-              rightIcon="external-link"
-              verticalAlign="unset"
-              color="#16bdca"
-            >
-              Refactoring UI book
-            </Button>
+            <a href="https://refactoringui.com/book/" target="_blank">
+              <Button
+                variant="link"
+                isExternal
+                rightIcon="external-link"
+                verticalAlign="unset"
+                color="#16bdca"
+              >
+                Refactoring UI book
+              </Button>
+            </a>
           </Text>
           <Box h={4}></Box>
           <Text color="white">
             All source codes are available on{" "}
-            <Button
-              variant="link"
-              href="https://refactoringui.com/book/"
-              isExternal
-              verticalAlign="unset"
-              color={theme.colors.gray[200]}
-              rightIcon="external-link"
+            <a
+              href="https://github.com/umarluqman/showcase-site"
+              target="_blank"
             >
-              GitHub
-            </Button>
+              <Button
+                variant="link"
+                isExternal
+                verticalAlign="unset"
+                color={theme.colors.gray[200]}
+                rightIcon="external-link"
+              >
+                GitHub
+              </Button>
+            </a>
           </Text>
         </Box>
         <Flex>
