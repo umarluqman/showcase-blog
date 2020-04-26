@@ -46,7 +46,7 @@ const Index = () => {
           </Text>
           <Box h={4}></Box>
           <Text color="white">
-            All source code is available on{" "}
+            All source codes are available on{" "}
             <Button
               variant="link"
               href="https://refactoringui.com/book/"
